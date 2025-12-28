@@ -1,0 +1,85 @@
+# Documentation API Contract for ROS 2 Module
+
+# This contract represents the structure and metadata for the documentation content
+# Since this is a static documentation site, the "API" represents the content structure
+
+openapi: 3.0.0
+info:
+  title: ROS 2 Robotic Nervous System Documentation API
+  version: 1.0.0
+  description: API contract for ROS 2 documentation content
+
+paths:
+  /docs/ros2-fundamentals:
+    get:
+      summary: Get ROS 2 Fundamentals chapter
+      description: Returns the content for the ROS 2 Fundamentals chapter
+      responses:
+        '200':
+          description: ROS 2 Fundamentals content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContent'
+
+  /docs/python-agents-rclpy:
+    get:
+      summary: Get Python Agents with rclpy chapter
+      description: Returns the content for the Python Agents with rclpy chapter
+      responses:
+        '200':
+          description: Python Agents with rclpy content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContent'
+
+  /docs/humanoid-modeling-urdf:
+    get:
+      summary: Get Humanoid Modeling with URDF chapter
+      description: Returns the content for the Humanoid Modeling with URDF chapter
+      responses:
+        '200':
+          description: Humanoid Modeling with URDF content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContent'
+
+components:
+  schemas:
+    ChapterContent:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - priority
+        - targetAudience
+        - learningObjectives
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Title of the chapter
+        content:
+          type: string
+          description: Markdown content of the chapter
+        priority:
+          type: integer
+          description: Priority order (P1, P2, P3)
+        targetAudience:
+          type: string
+          description: Target audience for the content
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives for the chapter
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: List of prerequisites for understanding the content

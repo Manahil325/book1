@@ -1,0 +1,140 @@
+# Documentation API Contract
+
+## Overview
+
+This contract defines the structure and interface for the Digital Twins Module documentation in Docusaurus.
+
+## Content Structure API
+
+### Module Endpoint
+```
+GET /api/docs/module-2-digital-twins
+```
+
+**Response**:
+```json
+{
+  "id": "module-2-digital-twins",
+  "title": "Module 2: Digital Twins",
+  "description": "Educational module on digital twins, physics simulation, and sensor validation",
+  "chapters": [
+    {
+      "id": "chapter-1-gazebo-sim",
+      "title": "Physics Simulation with Gazebo",
+      "description": "Learn physics-based simulation with Gazebo",
+      "pages": ["physics-basics", "environment-setup", "sensor-integration", "exercises"]
+    },
+    {
+      "id": "chapter-2-unity-hri",
+      "title": "Digital Twin and HRI in Unity",
+      "description": "Create digital twins with human-robot interaction in Unity",
+      "pages": ["unity-setup", "digital-twin-creation", "hri-concepts", "exercises"]
+    },
+    {
+      "id": "chapter-3-sensor-validation",
+      "title": "Sensor Simulation and Validation",
+      "description": "Simulate sensors and validate their accuracy",
+      "pages": ["sensor-types", "validation-methods", "comparison-tools", "exercises"]
+    }
+  ],
+  "prerequisites": ["ROS 2 fundamentals", "Python basics"],
+  "target_audience": ["AI students", "Robotics students", "Mechatronics students", "Software engineers transitioning to embodied systems"]
+}
+```
+
+## Navigation API
+
+### Navigation Structure
+```
+GET /api/docs/module-2-digital-twins/navigation
+```
+
+**Response**:
+```json
+{
+  "module": {
+    "label": "Module 2: Digital Twins",
+    "items": [
+      {
+        "type": "category",
+        "label": "Chapter 1: Physics Simulation with Gazebo",
+        "items": [
+          {"type": "doc", "id": "module-2-digital-twins/chapter-1-gazebo-sim/index"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-1-gazebo-sim/physics-basics"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-1-gazebo-sim/environment-setup"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-1-gazebo-sim/sensor-integration"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-1-gazebo-sim/exercises"}
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Chapter 2: Digital Twin and HRI in Unity",
+        "items": [
+          {"type": "doc", "id": "module-2-digital-twins/chapter-2-unity-hri/index"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-2-unity-hri/unity-setup"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-2-unity-hri/digital-twin-creation"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-2-unity-hri/hri-concepts"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-2-unity-hri/exercises"}
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Chapter 3: Sensor Simulation and Validation",
+        "items": [
+          {"type": "doc", "id": "module-2-digital-twins/chapter-3-sensor-validation/index"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-3-sensor-validation/sensor-types"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-3-sensor-validation/validation-methods"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-3-sensor-validation/comparison-tools"},
+          {"type": "doc", "id": "module-2-digital-twins/chapter-3-sensor-validation/exercises"}
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Content Retrieval API
+
+### Get Chapter Content
+```
+GET /api/docs/module-2-digital-twins/chapter/{chapterId}
+```
+
+**Response**:
+```json
+{
+  "chapterId": "chapter-1-gazebo-sim",
+  "title": "Physics Simulation with Gazebo",
+  "pages": [
+    {
+      "id": "physics-basics",
+      "title": "Physics Basics",
+      "content": "Markdown content for physics basics...",
+      "learning_objectives": ["Understand physics simulation concepts", "Learn about mass, friction, and other parameters"],
+      "estimated_time": "30 minutes"
+    }
+  ]
+}
+```
+
+## Search API
+
+### Search Documentation
+```
+GET /api/docs/module-2-digital-twins/search?q={query}
+```
+
+**Response**:
+```json
+{
+  "query": "physics simulation",
+  "results": [
+    {
+      "title": "Physics Basics",
+      "url": "/docs/module-2-digital-twins/chapter-1-gazebo-sim/physics-basics",
+      "excerpt": "Content about physics simulation concepts...",
+      "relevance": 0.95
+    }
+  ]
+}
+```
